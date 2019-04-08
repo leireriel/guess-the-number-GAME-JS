@@ -4,35 +4,41 @@ const button = document.querySelector('.button');
 const input = document.querySelector('.input');
 const counter = document.querySelector('.counter');
 const result = document.querySelector('.result');
+const randomNumberSelected = getRandomNumber(100);
 let clicks = 0;
+counter.innerHTML = clicks;
 
 // Function to get random number
-const getRandomInt = max => Math.floor(Math.random() * Math.floor(max));
+function getRandomNumber(max) {
+    return Math.ceil(Math.random() * max)
+};
 
 //Function to compare random number with input value
 function getRandomCompared() {
-    console.log(input.value);
-    if (randomNumberSelected == input.value) {
+    let userNumber = parseInt(input.value);
+    console.log(userNumber);
+    if (randomNumberSelected === userNumber) {
         result.innerHTML = 'You win!!';
-    } else if (randomNumberSelected < input.value) {
+    } else if (randomNumberSelected < userNumber) {
         result.innerHTML = 'Too hight 😜, try again';
-    } else if (randomNumberSelected > input.value) {
+        clicks += 1;
+        counter.innerHTML = clicks;
+    } else if (randomNumberSelected > userNumber) {
         result.innerHTML = 'Too short 😜, try again';
+        clicks += 1;
+        counter.innerHTML = clicks;
     } else {
-        console.log('Please, write a valid number');
+        result.innerHTML = 'Please, enter a valid number';
     }
 }
 
-//Function to count clicks
-function countClick() {
-    clicks += 1;
-    counter.innerHTML = clicks;
+function pressEnter(e) {
+    if (e.keyCode == 13) {
+        getRandomCompared();
+    }
 }
 
-let randomNumberSelected = getRandomInt(100);
 console.log(randomNumberSelected);
 
-button.addEventListener('click', () => {
-    getRandomCompared();
-    countClick();
-});
+button.addEventListener('click', getRandomCompared);
+window.addEventListener('keypress', pressEnter);

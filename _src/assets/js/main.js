@@ -60,6 +60,7 @@ function resetGame() {
     counter.innerHTML = clicks;
     result.innerHTML = 'Escribe un número y dale a <em>Prueba</em>';
     randomNumberSelected = getRandomNumber(100);
+    console.log(randomNumberSelected);
 }
 
 console.log(randomNumberSelected);

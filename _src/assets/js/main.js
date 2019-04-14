@@ -4,35 +4,63 @@ const button = document.querySelector('.button');
 const input = document.querySelector('.input');
 const counter = document.querySelector('.counter');
 const result = document.querySelector('.result');
+const reset = document.querySelector('.reset');
+let randomNumberSelected = getRandomNumber(100);
 let clicks = 0;
+counter.innerHTML = clicks;
 
 // Function to get random number
-const getRandomInt = max => Math.floor(Math.random() * Math.floor(max));
+function getRandomNumber(max) {
+    return Math.ceil(Math.random() * max)
+};
 
 //Function to compare random number with input value
 function getRandomCompared() {
-    console.log(input.value);
-    if (randomNumberSelected == input.value) {
-        result.innerHTML = 'You win!!';
-    } else if (randomNumberSelected < input.value) {
-        result.innerHTML = 'Too hight 😜, try again';
-    } else if (randomNumberSelected > input.value) {
-        result.innerHTML = 'Too short 😜, try again';
+    let userNumber = parseInt(input.value);
+    if (randomNumberSelected === userNumber) {
+        printResult(result, 'You win!! 🎉');
+    } else if (userNumber > 100) {
+        printResult(result, 'Can\'t be bigger than 100');
+    } else if (userNumber < 0) {
+        printResult(result, 'Can\'t be smaller than 0');
+    } else if (randomNumberSelected < userNumber) {
+        printResult(result, 'Too hight 🌡, try again');
+        add1Counter();
+    } else if (randomNumberSelected > userNumber) {
+        printResult(result, 'Too short ☃, try again');
+        add1Counter();
     } else {
-        console.log('Please, write a valid number');
+        printResult(result, 'Please, enter a valid number');
     }
 }
 
-//Function to count clicks
-function countClick() {
+//Function to print result
+function printResult(constName, text) {
+    constName.innerHTML = text;
+}
+
+//Function to add +1 on counter
+function add1Counter() {
     clicks += 1;
     counter.innerHTML = clicks;
 }
 
-let randomNumberSelected = getRandomInt(100);
-console.log(randomNumberSelected);
+//Function to press Enter to run function getRandomCompared()
+function pressEnter(e) {
+    if (e.keyCode == 13) {
+        getRandomCompared();
+    }
+}
 
-button.addEventListener('click', () => {
-    getRandomCompared();
-    countClick();
-});
+//Function to reset game
+function resetGame() {
+    input.value = '';
+    clicks = 0;
+    counter.innerHTML = clicks;
+    result.innerHTML = 'Escribe un número y dale a <em>Prueba</em>';
+    randomNumberSelected = getRandomNumber(100);
+}
+
+button.addEventListener('click', getRandomCompared);
+window.addEventListener('keydown', pressEnter);
+reset.addEventListener('click', resetGame);

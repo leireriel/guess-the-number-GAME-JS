@@ -1,1 +1,35 @@
-
+body {
+    font-family: sans-serif;
+    background-color: lightgrey;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.game {
+    display: flex;
+    flex-direction: column;
+    width: 350px;
+    margin: 50px 0;
+    .instruction {
+        font-size: 22px;
+    }
+    .input, .button {
+        margin: 10px 0;
+    }
+    .input {
+        padding: 10px;
+    }
+}
+.result {
+    color: blue;
+    border: 1px solid blue;
+    padding: 10px;
+}
+.counter {
+    color: red;
+    font-size: 60px;
+    position: absolute;
+    top: 0;
+    right: 50px;
+}

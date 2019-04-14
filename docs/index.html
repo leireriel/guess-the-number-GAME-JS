@@ -3,7 +3,10 @@
     
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Evaluación intermedia - Leire</title>
+        <link rel="stylesheet" href="assets/css/main.css">
     </head>
     
     <body>
@@ -13,13 +16,17 @@
 
             </header>
             <main>
-                 <h2 class="instruction">Introduce aquí tu número</h2>
+                <div class="game">
+                     <h2 class="instruction">Introduce aquí tu número</h2>
 
-                <input class="input" type="number">
-                <button class="button">Prueba</button>
+                    <label for="writeNumber"></label>
+                    <input id="writeNumber" class="input" type="number">
+                    <button class="button">Prueba</button>
+                </div>
                 <p class="result">Escribe un número y dale a <em>Prueba</em>
                 </p>
                 <p class="counter"></p>
+                <button class="reset">Reset game</button>
             </main>
             <script type="text/javascript" src="assets/js/main.js"></script>
         </div>
